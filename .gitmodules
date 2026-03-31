@@ -1,0 +1,3 @@
+[submodule "tree-sitter-aster"]
+	path = tree-sitter-aster
+	url = https://github.com/brianp/tree-sitter-aster.git
