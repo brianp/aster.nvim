@@ -10,24 +10,6 @@ function M.setup(opts)
     },
   })
 
-  -- Set up tree-sitter if nvim-treesitter is available
-  if opts.treesitter ~= false then
-    local ok, parsers = pcall(require, "nvim-treesitter.parsers")
-    if ok then
-      local parser_config = parsers.get_parser_configs()
-      parser_config.aster = {
-        install_info = {
-          url = opts.grammar_path or (vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":h:h:h") .. "/tree-sitter-aster"),
-          files = { "src/parser.c" },
-          branch = "main",
-          generate_requires_npm = false,
-          requires_generate_from_grammar = true,
-        },
-        filetype = "aster",
-      }
-    end
-  end
-
   -- Set up LSP if configured
   if opts.lsp then
     M.setup_lsp(opts.lsp)
