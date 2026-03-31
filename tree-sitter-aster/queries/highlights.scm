@@ -50,6 +50,9 @@
 
 "throws" @keyword.exception
 
+(throw_expression
+  "throw" @keyword.exception)
+
 ; ─── Functions ───────────────────────────────────────────────────────
 
 (function_definition
@@ -190,6 +193,9 @@
 ; ─── Patterns ────────────────────────────────────────────────────────
 
 (wildcard_pattern) @variable.builtin
+
+(match_expression
+  "match" @keyword.conditional)
 
 ; ─── Module paths ────────────────────────────────────────────────────
 

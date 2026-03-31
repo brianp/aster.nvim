@@ -136,7 +136,13 @@ bool tree_sitter_aster_external_scanner_scan(void *payload, TSLexer *lexer,
     }
 
     // Same indent: no INDENT/DEDENT needed
-    // Fall through to NEWLINE handling
+    // If we consumed blank lines to get here, emit NEWLINE directly
+    // (the NEWLINE section below won't find a \n since we already skipped past it)
+    if (valid_symbols[NEWLINE]) {
+      lexer->result_symbol = NEWLINE;
+      return true;
+    }
+    return false;
   }
 
   // 3. NEWLINE production

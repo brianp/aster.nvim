@@ -1901,17 +1901,8 @@
       "value": "continue"
     },
     "throw_statement": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "throw"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "expression"
-        }
-      ]
+      "type": "SYMBOL",
+      "name": "throw_expression"
     },
     "assignment": {
       "type": "PREC_RIGHT",
@@ -1991,6 +1982,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "throw_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "lambda"
         },
         {
@@ -1998,6 +1993,23 @@
           "name": "primary_expression"
         }
       ]
+    },
+    "throw_expression": {
+      "type": "PREC_RIGHT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "throw"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
     },
     "primary_expression": {
       "type": "CHOICE",
@@ -2041,6 +2053,39 @@
         {
           "type": "SYMBOL",
           "name": "parenthesized_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "match_expression"
+        }
+      ]
+    },
+    "match_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "match"
+        },
+        {
+          "type": "FIELD",
+          "name": "scrutinee",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "match_body"
+          }
         }
       ]
     },
@@ -3056,6 +3101,14 @@
     [
       "method_call_expression",
       "member_expression"
+    ],
+    [
+      "match_statement",
+      "match_expression"
+    ],
+    [
+      "throw_statement",
+      "expression"
     ]
   ],
   "precedences": [],

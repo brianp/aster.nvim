@@ -27,6 +27,8 @@ module.exports = grammar({
 
   conflicts: ($) => [
     [$.method_call_expression, $.member_expression],
+    [$.match_statement, $.match_expression],
+    [$.throw_statement, $.expression],
   ],
 
   rules: {
@@ -400,7 +402,7 @@ module.exports = grammar({
     continue_statement: (_) => "continue",
 
     throw_statement: ($) =>
-      seq("throw", $.expression),
+      $.throw_expression,
 
     assignment: ($) =>
       prec.right(-1, seq(
@@ -424,9 +426,13 @@ module.exports = grammar({
         $.detached_expression,
         $.resolve_expression,
         $.error_propagation,
+        $.throw_expression,
         $.lambda,
         $.primary_expression,
       ),
+
+    throw_expression: ($) =>
+      prec.right(PREC.LAMBDA, seq("throw", $.expression)),
 
     primary_expression: ($) =>
       choice(
@@ -440,6 +446,15 @@ module.exports = grammar({
         $.list_literal,
         $.map_literal,
         $.parenthesized_expression,
+        $.match_expression,
+      ),
+
+    match_expression: ($) =>
+      seq(
+        "match",
+        field("scrutinee", $.expression),
+        $._newline,
+        field("body", $.match_body),
       ),
 
     parenthesized_expression: ($) =>
