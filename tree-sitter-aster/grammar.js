@@ -194,7 +194,7 @@ module.exports = grammar({
 
     // ─── Common definition parts ────────────────────────────────
 
-    visibility: (_) => "pub",
+    visibility: ($) => seq("pub"),
 
     type_parameters: ($) =>
       seq("[", commaSep1($.identifier), "]"),
@@ -397,9 +397,9 @@ module.exports = grammar({
     return_statement: ($) =>
       prec.right(seq("return", optional($.expression))),
 
-    break_statement: (_) => "break",
+    break_statement: ($) => seq("break"),
 
-    continue_statement: (_) => "continue",
+    continue_statement: ($) => seq("continue"),
 
     throw_statement: ($) =>
       $.throw_expression,

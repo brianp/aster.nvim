@@ -46,7 +46,7 @@
   "resolve"
 ] @keyword.coroutine
 
-"pub" @keyword.modifier
+(visibility) @keyword.modifier
 
 "throws" @keyword.exception
 
