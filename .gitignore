@@ -1,0 +1,6 @@
+tree-sitter-aster/node_modules/
+tree-sitter-aster/build/
+tree-sitter-aster/*.wasm
+tree-sitter-aster/*.dylib
+tree-sitter-aster/*.so
+tree-sitter-aster/package-lock.json
