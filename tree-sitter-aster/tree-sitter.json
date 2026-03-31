@@ -6,7 +6,8 @@
       "scope": "source.aster",
       "path": ".",
       "file-types": [
-        "aster"
+        "aster",
+        "astr"
       ],
       "highlights": "queries/highlights.scm",
       "injection-regex": "^aster$"

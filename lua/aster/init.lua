@@ -7,8 +7,18 @@ function M.setup(opts)
   vim.filetype.add({
     extension = {
       aster = "aster",
+      astr = "aster",
     },
   })
+
+  -- Set up tree-sitter if nvim-treesitter is available
+  if opts.treesitter ~= false then
+    local ok, install = pcall(require, "nvim-treesitter.install")
+    if ok then
+      install.prefer_git = false
+      vim.treesitter.language.register("aster", "aster")
+    end
+  end
 
   -- Set up LSP if configured
   if opts.lsp then
