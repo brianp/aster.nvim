@@ -95,3 +95,7 @@ require("aster").setup({
 ```
 
 This configures the native `vim.lsp` client to connect to the Aster language server for diagnostics, hover, go-to-definition, and completions.
+
+## License
+
+MIT License. See [LICENSE](LICENSE) for details.
