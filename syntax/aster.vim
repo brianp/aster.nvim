@@ -21,11 +21,23 @@ syn keyword asterException      throws catch
 " ─── Operators ───────────────────────────────────────────────────────
 
 syn keyword asterOperatorWord   and or not
-syn match   asterOperator       /[+\-*/%!=<>]=\?/
+syn match   asterOperator       /+/
+syn match   asterOperator       /-/
+syn match   asterOperator       /\*/
+syn match   asterOperator       /\//
+syn match   asterOperator       /%/
 syn match   asterOperator       /\*\*/
+syn match   asterOperator       /==/
+syn match   asterOperator       /!=/
+syn match   asterOperator       /<=/
+syn match   asterOperator       />=/
+syn match   asterOperator       /</
+syn match   asterOperator       />/
 syn match   asterOperator       /=>/
 syn match   asterOperator       /->/
-syn match   asterOperator       /\.\.\=\?/
+syn match   asterOperator       /\.\./
+syn match   asterOperator       /\.\.=/
+syn match   asterOperator       /!/
 
 " ─── Types ───────────────────────────────────────────────────────────
 
